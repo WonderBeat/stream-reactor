@@ -180,7 +180,7 @@ object JMSSettings extends StrictLogging {
 
   private def parseAdditionalHeaders(cfgLine: String): Map[String, String] =
     Splitter.on(';').omitEmptyStrings()
-      .split(cfgLine)
+      .split(cfgLine.replaceAll("\"", ""))
       .map { header =>
         val keyValue = header.split("=", 2)
         (keyValue(0), keyValue(1))
